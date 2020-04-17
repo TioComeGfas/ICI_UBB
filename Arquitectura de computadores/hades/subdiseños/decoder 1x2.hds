@@ -1,0 +1,14 @@
+# hades.models.Design file
+#  
+[name] Decod_1x2
+[components]
+hades.models.io.Opin Signal_1 14400 5400 @N 1001 5.0E-9
+hades.models.io.Ipin IN 10800 7200 @N 1001  U
+hades.models.io.Opin Signal_0 14400 7200 @N 1001 5.0E-9
+hades.models.gates.InvSmall i0 12000 6600 @N 1001 5.0E-9
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 n1 2 i0 Y Signal_0 A 1 2 13800 7200 14400 7200 0 
+hades.signals.SignalStdLogic1164 n0 3 IN Y i0 A Signal_1 A 4 2 11400 7200 12000 7200 2 10800 7200 11400 7200 2 11400 7200 11400 5400 2 11400 5400 14400 5400 1 11400 7200 
+[end signals]
+[end]

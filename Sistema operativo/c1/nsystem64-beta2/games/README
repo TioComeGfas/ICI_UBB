@@ -1,0 +1,33 @@
+
+Este directorio contiene ejemplos de programas que usan nSystem
+y curses, para desplegar objetos que se desplazan en la pantalla
+(o ventana).
+
+tty.c tty.h: Un servidor de pantalla.
+
+  Permite:
+
+  + Multiples tareas modificando concurrente la pantalla.
+  + Una tarea lee lo que se tipee en el teclado.
+  + Trabajar en pantalla completa.
+
+  Las operaciones que se pueden realizar se describen en tty.h
+
+ladder.c ladder.h: Manejo de objetos y paisaje para game.
+
+  Sirve para leer el `paisaje' que se encuentra en el archivo
+  `ladder-screen.txt' y luego hacer actualizaciones como
+  colocar un objeto (un caracter) en una posicion dada y
+  restaurar esa posicion.  Tambien permite conocer que objeto
+  se encuentra en una posicion dada.  En `ladder.h' se describen
+  las operaciones que se pueden efectuar.
+
+pong.c: Un programa que usa tty.c y tty.h para hacer rebotar
+  3 pelotas en el terminal.
+
+game: un juego tipo Donky kong (spelling?).  Fue la tarea 1 el 94/2.
+
+ball: otro juego tipo no se que.  La idea es dispararle a la pelota
+  que rebota.  Por cada acierto aparece una nueva pelota.  El objetivo
+  es maximizar el numero de pelotas.  El record fue mas de 50 pelotas.
+  Fue la tarea 1 del 95/2.

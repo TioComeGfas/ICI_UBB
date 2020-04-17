@@ -1,0 +1,13 @@
+
+Ejemplos de monitores: semprodcons
+
+Para compilarlo haga make APP=semprodcons
+
+  % semprodcons
+  cambios de contexto=7
+  cambios de contexto=16
+  cambios de contexto=30
+  cambios de contexto=43
+  cambios de contexto=56
+
+  ... (no termina nunca pero no debe caerse)

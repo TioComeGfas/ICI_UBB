@@ -1,0 +1,22 @@
+
+[JavaFSM V1.0]
+[MOORE]
+[Name]
+No Name
+[Inputs 1]
+X,0
+[Outputs 1]
+Y
+[Zustaende 3]
+A,86,200,false,0
+B,266,98,false,0
+C,461,201,true,1
+[Transitionen 6]
+A,A,!X
+A,B,X
+B,C,X
+C,C,X
+B,A,!X
+C,A,!X
+[Kommentare 0]
+[ENDE]

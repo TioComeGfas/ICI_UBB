@@ -1,0 +1,28 @@
+   00000000011111111112222222222333333333344444444445555555555666666666677777777778 
+   12345678901234567890123456789012345678901234567890123456789012345678901234567890 
+  TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+01T                                            Trata de llegar al `#'              T
+02T #                                                                              T
+03TTTTTTTTTTTTTTTTTTTTTHH               (muevete con jkli y salta con space)       T
+04T                                                                                T
+05T                                                                                T
+06T                                       <>                                       T
+07T                     TTTTTTTTTTTTTTTTTTTTTTTHTTTTTTTTTTTTTT     TTTTTTTTTTH     T
+08T                                                                          H     T
+09T                                                                          H     T
+10T                                                                          H     T
+11T                 T                                                        H     T
+12T                 T                                <>                      H     T
+13T TTHTTT     TTTTTTTTTTTTT        TTTT^^^TTT^^^^TTTTTTTTT       TTTTTTTTTTTT     T
+14T   H                                                                            T
+15T   H                                                                            T
+16T   H                                                                   H        T
+17T   H                                                                   H        T
+18T   H                                                                   H        T
+19TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT      TTTTTTTHTTTTTTTTTTTTTTTTT      TTTTTTTTTTTT
+20T                                             H                                  T
+21T   Usa 'q' para terminar                     H                                  T
+22T                                             H                                  T
+23T                                             H                                  T
+24T                                             H                ^^^^^^^         @ T
+25TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT

@@ -1,0 +1,43 @@
+# hades.models.Design file
+#  
+[name] unnamed
+[components]
+hades.models.Design unnamed3 8400 9000 @N 1001 F:/sumador\u00203\u0020bits.hds
+hades.models.Design unnamed2 8400 6000 @N 1001 F:/sumador\u00203\u0020bits.hds
+hades.models.Design unnamed1 8400 3000 @N 1001 F:/sumador\u00203\u0020bits.hds
+hades.models.io.Ipin i9 7800 -2400 @N 1001  U
+hades.models.io.Opin i8 19200 -1200 @N 1001 5.0E-9
+hades.models.io.Ipin i7 4200 9600 @N 1001 null U
+hades.models.io.Ipin i6 1800 9600 @N 1001 null U
+hades.models.io.Ipin i5 -600 9600 @N 1001 null U
+hades.models.io.Ipin i4 -3000 9600 @N 1001 null U
+hades.models.io.Ipin i3 3600 -1200 @N 1001 null U
+hades.models.io.Ipin i2 1200 -1200 @N 1001 null U
+hades.models.io.Opin i12 26400 -1200 @N 1001 5.0E-9
+hades.models.io.Ipin i1 -1200 -1200 @N 1001 null U
+hades.models.io.Opin i11 24000 -1200 @N 1001 5.0E-9
+hades.models.io.Ipin i0 -3600 -1200 @N 1001 null U
+hades.models.io.Opin i10 21600 -1200 @N 1001 5.0E-9
+hades.models.io.Opin carry_out 15600 -1200 @N 1001 5.0E-9
+hades.models.Design unnamed 8400 0 @N 1001 F:/sumador\u00203\u0020bits.hds
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 n9 2 unnamed2 i15 i11 A 2 2 13200 7200 24000 7200 2 24000 7200 24000 -1200 0 
+hades.signals.SignalStdLogic1164 n8 2 i2 Y unnamed2 i12 2 2 1200 -1200 1200 7200 2 1200 7200 8400 7200 0 
+hades.signals.SignalStdLogic1164 n7 2 i6 Y unnamed2 i13 2 2 1800 9600 1800 7800 2 1800 7800 8400 7800 0 
+hades.signals.SignalStdLogic1164 n6 2 unnamed2 i14 unnamed1 i11 1 2 13200 6600 8400 3600 0 
+hades.signals.SignalStdLogic1164 n5 2 i0 Y unnamed i12 2 2 -3600 -1200 -3600 1200 2 -3600 1200 8400 1200 0 
+hades.signals.SignalStdLogic1164 n4 2 unnamed3 i14 unnamed2 i11 1 2 13200 9600 8400 6600 0 
+hades.signals.SignalStdLogic1164 n3 2 i3 Y unnamed3 i12 3 2 3600 -1200 6000 -1200 2 6000 -1200 6000 10200 2 6000 10200 8400 10200 0 
+hades.signals.SignalStdLogic1164 n16 2 unnamed1 i14 unnamed i11 1 2 13200 3600 8400 600 0 
+hades.signals.SignalStdLogic1164 n2 2 i7 Y unnamed3 i13 3 2 4200 9600 5400 9600 2 5400 9600 5400 10800 2 5400 10800 8400 10800 0 
+hades.signals.SignalStdLogic1164 n15 2 i1 Y unnamed1 i12 2 2 -1200 -1200 -1200 4200 2 -1200 4200 8400 4200 0 
+hades.signals.SignalStdLogic1164 n1 2 i4 Y unnamed i13 2 2 -3000 9600 -3000 1800 2 -3000 1800 8400 1800 0 
+hades.signals.SignalStdLogic1164 n14 2 i5 Y unnamed1 i13 2 2 -600 9600 -600 4800 2 -600 4800 8400 4800 0 
+hades.signals.SignalStdLogic1164 n13 2 unnamed i14 carry_out A 3 2 13200 600 14400 600 2 14400 600 14400 -1200 2 14400 -1200 15600 -1200 0 
+hades.signals.SignalStdLogic1164 n0 2 i9 Y unnamed3 i11 2 2 7800 -2400 7800 9600 2 7800 9600 8400 9600 0 
+hades.signals.SignalStdLogic1164 n12 2 unnamed3 i15 i12 A 2 2 13200 10200 26400 10200 2 26400 10200 26400 -1200 0 
+hades.signals.SignalStdLogic1164 n11 2 unnamed1 i15 i10 A 2 2 13200 4200 21600 4200 2 21600 4200 21600 -1200 0 
+hades.signals.SignalStdLogic1164 n10 2 unnamed i15 i8 A 2 2 13200 1200 19200 1200 2 19200 1200 19200 -1200 0 
+[end signals]
+[end]

@@ -1,0 +1,25 @@
+
+Ejemplos varios: term-serv iotest
+
+Para compilarlos haga make APP=<ejemplo>
+
+iotest: Un ejemplo de E/S no bloqueante.  Manda mensajes a la pantalla
+  hasta que se de un `enter'.  Ejemplo:
+
+  % iotest
+  Ingrese cualquier cosa
+  Ingrese cualquier cosa
+                           <--- el `enter'
+  Ingrese cualquier cosa
+  Ok, muchas gracias
+
+term-serv: Otro ejemplo de E/S no bloqueante. Para correrlo:
+
+  % server term-serv
+
+  Crea dos ventanas (xterm).  Lo que se tipee en cualquiera de las
+  dos ventanas aparece en la salida estandar.  Se supone que esto
+  no es trivial hacerlo en Unix a menos que se use (select en BSD
+  o poll en SYSV). El shell server es el que se encarga de crear
+  los dos xterm y luego se los pasa como argumento a term-serv
+  (es un shell de unas pocas lineas, pero es todo un reto entender).

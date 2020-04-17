@@ -1,0 +1,31 @@
+# hades.models.Design file
+#  
+[name] \u003c\u003c_1
+[components]
+hades.models.io.Ipin A6 -22200 10800 @N 1001  U
+hades.models.io.Ipin A5 -22200 9600 @N 1001  U
+hades.models.io.Ipin A4 -22200 8400 @N 1001  U
+hades.models.io.Ipin A3 -22200 7200 @N 1001  U
+hades.models.io.Ipin A2 -22200 6000 @N 1001  U
+hades.models.io.Ipin A1 -22200 4800 @N 1001  U
+hades.models.io.Ipin A0 -22200 3600 @N 1001  U
+hades.models.io.Opin C7 -15600 12000 @N 1001 5.0E-9
+hades.models.io.Opin C6 -15600 10800 @N 1001 5.0E-9
+hades.models.io.Opin C5 -15600 9600 @N 1001 5.0E-9
+hades.models.io.Opin C4 -15600 8400 @N 1001 5.0E-9
+hades.models.io.Opin C3 -15600 7200 @N 1001 5.0E-9
+hades.models.io.Opin C2 -15600 6000 @N 1001 5.0E-9
+hades.models.io.Opin C1 -15600 4800 @N 1001 5.0E-9
+hades.models.io.Opin C0 -15600 3600 @N 1001 5.0E-9
+hades.models.io.Ipin A7 -22200 12000 @N 1001  U
+[end components]
+[signals]
+hades.signals.SignalStdLogic1164 n6 2 A1 Y C0 A 3 2 -22200 4800 -20400 4800 2 -20400 4800 -20400 3600 2 -20400 3600 -15600 3600 0 
+hades.signals.SignalStdLogic1164 n5 2 A2 Y C1 A 3 2 -22200 6000 -19800 6000 2 -19800 6000 -19800 4800 2 -19800 4800 -15600 4800 0 
+hades.signals.SignalStdLogic1164 n4 2 A3 Y C2 A 3 2 -22200 7200 -19200 7200 2 -19200 7200 -19200 6000 2 -19200 6000 -15600 6000 0 
+hades.signals.SignalStdLogic1164 n3 2 A4 Y C3 A 3 2 -22200 8400 -18600 8400 2 -18600 8400 -18600 7200 2 -18600 7200 -15600 7200 0 
+hades.signals.SignalStdLogic1164 n2 2 A5 Y C4 A 3 2 -22200 9600 -18000 9600 2 -18000 9600 -18000 8400 2 -18000 8400 -15600 8400 0 
+hades.signals.SignalStdLogic1164 n1 2 A6 Y C5 A 3 2 -22200 10800 -17400 10800 2 -17400 10800 -17400 9600 2 -17400 9600 -15600 9600 0 
+hades.signals.SignalStdLogic1164 n0 2 A7 Y C6 A 3 2 -22200 12000 -16800 12000 2 -16800 12000 -16800 10800 2 -16800 10800 -15600 10800 0 
+[end signals]
+[end]

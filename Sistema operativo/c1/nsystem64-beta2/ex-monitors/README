@@ -1,0 +1,21 @@
+
+Ejemplos de monitores: monprodcons
+
+Para compilarlo haga make APP=monprodcons
+
+  % monprodcons -slice 1
+    Ok (restan 39)
+    Ok (restan 38)
+    Ok (restan 37)
+    Ok (restan 36)
+    Ok (restan 35)
+    ...
+    Ok (restan 1)
+    Ok (restan 0)
+    Good
+
+    Estadisticas finales:
+
+ 
+    Nro. de cambios de contextos implicitos: 1700
+    Largo promedio de la cola ``ready'': 15.748235

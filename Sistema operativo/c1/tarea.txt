@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char matrix[3][3];  /*la  matriz */
+
+char check(void);
+void init_matrix(void);
+void get_movida_jugador(void);
+void get_movida_compu(void);
+void mostrar_matriz(void);
+
+int main(void)
+{
+  char terminado;
+
+  terminado =  ' ';
+  init_matrix();
+
+  do {
+    mostrar_matriz();
+    get_movida_jugador();
+    terminado  = check(); /* existe un ganador ? */
+    if(terminado!= ' ') break; /*ganadorr!*/
+    get_movida_compu();
+    terminado = check(); /*existe un ganador */
+  } while(terminado == ' ');
+
+  if(terminado =='X') printf("Ganaste!\n");
+  else printf("Loser! :P\n");
+  mostrar_matriz(); /*mostrar  posiciones iniciales */
+
+  return 0;
+}
+
+/* inicializa la  matriz. */
+void init_matrix(void)
+{
+  int i, j;
+
+  for(i=0; i<3; i++)
+    for(j=0; j<3; j++) matrix[i][j] =  ' ';
+}
+
+/* Obtiene movida de jugador . */
+void get_movida_jugador(void)
+{
+  int x, y;
+
+  printf("Escribe X,Y para tu movida: ");
+  scanf("%d%*c%d", &x, &y);
+
+  x--; y--;
+
+  if(matrix[x][y]!= ' '){
+    printf("MOvida invalida , reingresala\n");
+   get_movida_jugador();
+  }
+  else matrix[x][y] = 'X';
+}
+
+/* Obtiene movida de la computadora. */
+void get_movida_compu(void)
+{
+  int i, j;
+  for(i=0; i<3; i++){
+    for(j=0; j<3; j++)
+      if(matrix[i][j]==' ') break;
+    if(matrix[i][j]==' ') break;
+  }
+
+  if(i*j==9)  {
+    printf("Tablero \n");
+    exit(0);
+  }
+  else
+    matrix[i][j] = 'O';
+}
+
+/* Muestra la matriz . */
+void mostrar_matriz(void)
+{
+  int t;
+
+  for(t=0; t<3; t++) {
+    printf(" %c | %c | %c ",matrix[t][0],
+            matrix[t][1], matrix [t][2]);
+    if(t!=2) printf("\n---|---|---\n");
+  }
+  printf("\n");
+}
+
+/*Buscamos si existe un ganador . */
+char check(void)
+{
+  int i;
+
+  for(i=0; i<3; i++)  /* verifica filas */
+    if(matrix[i][0]==matrix[i][1] &&
+       matrix[i][0]==matrix[i][2]) return matrix[i][0];
+
+  for(i=0; i<3; i++)  /* verifica columnas  */
+    if(matrix[0][i]==matrix[1][i] &&
+       matrix[0][i]==matrix[2][i]) return matrix[0][i];
+
+  /* verifica diagonales */
+  if(matrix[0][0]==matrix[1][1] &&
+     matrix[1][1]==matrix[2][2])
+       return matrix[0][0];
+
+  if(matrix[0][2]==matrix[1][1] &&
+     matrix[1][1]==matrix[2][0])
+       return matrix[0][2];
+
+  return ' ';
+}

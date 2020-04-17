@@ -1,0 +1,32 @@
+#!/bin/csh
+# Este es un shell-script que permite probar la tarea 3 de cc41b.
+# Invoquelo mediante:
+#
+#   ~lmateu/nSystem/server <binario>
+# 
+# en donde <binario> es el ejecutable del archivo term-serv.c que
+# usa las primitivas nOpen, nRead, nWrite y nClose. Compile
+# Ud. mismo term-serv.c. 
+#
+# Este shell crea 2 ventanas en donde se puede tipear cualquier cosa.
+# En la ventana en donde se invoco este shell-scripts aparece
+# todo lo que se tipeo en las 2 ventanas creadas.
+# Para terminar, ingrese quit en las 2 ventanas.
+# Si todo funciona bien con un mensaje:
+# 
+#    Listas las dos ventanas.  Adios
+# 
+# entonces su tarea funciona ok.
+
+if ( $#argv <= 3 ) then
+  xterm -e $0 $* `tty`
+else
+  echo "****** Ok, invocando gdb *******"
+  echo "Para correr su tarea tipee :"
+  echo "run $2 $3 $4 > $2"
+  set tt=`tty`
+  gdb $1 < $tt >& $tt
+endif
+
+# Luis Mateu.
+# P.S.: Realmente sucio, no?

@@ -1,0 +1,233 @@
+%%%% nSystemDoc.tex
+
+\documentstyle[fullpage,spanish]{article}
+\parindent 0in
+\begin{document}      
+
+\begin{center}
+{\large\bf CC41B\,: Sistemas Operativos}\\
+{\bf Prof.: Luis Mateu.}\\
+{\bf Autor: Jaime Catal'an.}\\
+\bigskip
+{\large \bf El Nano System\,: nSystem}
+\end{center}
+
+\bigskip
+{\tt nSystem} es un sistema de procesos livianos para Unix con fines
+pedag'ogicos.  El sistema consiste de unos cientos de l'ineas de
+c'odigo en C (la mitad son comentarios) que implementan\,:
+
+\begin{itemize}
+
+\item Creaci'on y destrucci'on de procesos livianos (tareas).  Estos procesos
+comparten un mismo espacio de direcciones (est'an dentro de un solo
+proceso UNIX).
+
+\item Paso de Mensajes para la sincronizaci'on de tareas.
+
+\item Entrada/Salida no bloqueante para el proceso UNIX.
+
+\item Un scheduler muy simple. Permite implementar administraci'on preemptive
+y non-preemtive.
+
+
+\end{itemize}
+
+
+\subsubsection*{Archivos fuentes}
+
+En \verb+cipres:~cc41b/nSystem/+ Ud. encontrar'a los fuentes de nSystem.
+Los archivos contienen\,:
+
+\begin{itemize}
+
+\item {\tt nSystem.h}\,: Encabezados que debe incluir toda aplicaci'on
+que usa nSystem.  Estudiar cuidadosamente.
+
+\item {\tt nSysimp.h}\,: Encabezados con las estructuras de datos que
+usa nSystem internamente.
+
+\item {\tt nProcess.c}\,: Implementaci'on de nSystem.
+
+\item {\tt nMsg.c}\,: Implementaci'on mensajes entre tareas.
+
+\item {\tt nSem.c}\,: Implementaci'on de sem'aforos.
+
+\item {\tt nMonitor.c}\,: Implementaci'on de monitores.
+
+\item {\tt nIO.c}\,: E/S bloqueante para la tarea, pero no para el resto.
+
+\item {\tt nMain.c}\,: El main del programa C.
+
+\item {\tt nOther.c}\,: Procedimientos varios. (ej. nPrintf, nMalloc, etc.) 
+
+\item {\tt nQueue.c}\,: Manejo de colas.
+
+\item {\tt nDep.c}\,: Rutinas varias que hacen poco, pero son
+fuertemente dependientes de Unix.
+
+\item {\tt nStack-sparc.s}\,: Escrito en assembler, contiene procedimientos
+para cambiar la pila en la arquitectura sparc.
+
+\item {\tt nStack-i386.s}\,: Escrito en assembler, contiene procedimientos
+para cambiar la pila en la arquitectura intel 386.
+
+\end{itemize}
+
+\subsubsection*{ Estado actual de nSystem }
+
+A continuaci'on se detallan los procedimientos p'ublicos de nSystem.
+
+\begin{itemize}
+
+\item {\tt int nMain(/* int argc, char *argv[] */)}\,:  Este procedimiento es
+provisto por el programador y es invocado al comenzar la ejecuci'on.
+El retorno de este procemiento termina prematuramente todas las tareas
+pendientes. (No siempre sera necesario colocar argc y argv, por ello
+los argumentos estan comentados).
+
+\end{itemize}
+
+Creaci'on y Muerte de tareas\,:
+
+\begin{itemize}
+
+\item {\tt nTask nEmitTask( int (*proc)(), parametro1 ... parametro14 )}\,:
+Emite una tarea que ejecuta el procedimiento {\tt proc}. Acepta un
+m'aximo de 14 par'ametros (enteros o punteros).
+
+\item
+{\tt void nExitTask(int rc)}\,:
+Termina la ejecuci'on de una tarea,
+{\tt rc} es el c'odigo de retorno de la tarea.
+
+\item
+{\tt int   nWaitTask(nTask task)}\,:
+Espera a que una tarea termine,
+entrega el c'odigo de retorno dado a {\tt nExitTask}.
+
+\item
+{\tt void nExitSystem(int rc)}\,:
+Termina la ejecuci'on de todas las tareas (shutdown del proceso Unix),
+{\tt rc} es el c'odigo de retorno del proceso UNIX.
+
+\end{itemize}
+
+Par'ametros para las tareas\,:
+
+\begin{itemize}
+
+\item
+{\tt void nSetStackSize(int new\_size)}\,:
+Define el tama'no del stack de las tareas que se emitan a continuaci'on.
+
+\item
+{\tt void nSetTimeSlice(int slice)}\,: Tama'no de la tajada de tiempo
+para la administraci'on {\em Round--Robin} (preemptive) ({\tt
+slice} esta en miliseg).  Degenera en {\em FCFS} (non--preemptive) si {\tt
+slice} es cero, lo que es muy 'util para depurar programas. El valor
+por omisi'on de la tajada de tiempo es cero.
+
+\item
+{\tt void nSetTaskName( /* char *format, <args> ... */ )}\,:
+Asigna el nombre de la tarea que la invoca.
+El formato y los par'ametros que recibe son an'alogos a los de {\tt printf}.
+
+\end{itemize}
+
+Paso de Mensajes :
+
+\begin{itemize}
+
+\item {\tt int nSend(nTask task, void *msg)}\,: Env'ia el mensaje {\tt
+msg} a la tarea {\tt task}.  Un mensaje consiste en un puntero a un
+'area de datos de cualquier tama'no.  El emisor se queda bloqueado
+hasta que se le haga {\tt nReply}. {\tt nSend} retorna un entero
+especificado en {\tt nReply}.
+
+\item {\tt void *nReceive(nTask *ptask, int max\_delay)}\,:
+Recibe un mensaje proveniente de cualquier tarea.  La identificaci'on
+del emisor queda en {\tt *ptask}.  El mensaje retornado por {\tt
+nReceive} es un puntero a un 'area que ha sido posiblemente creada en
+la pila del emisor.  Dado que el emisor contin'ua bloqueado hasta que
+se haga {\tt nReply}, el receptor puede accesar libremente esta 'area
+sin peligro de que sea destruida por el emisor.
+
+La tarea que la invoca queda bloqueada por {\tt max\_delay} miliseg,
+esperando un mensaje. Si el per'iodo finaliza sin que llegue alguno,
+se retorna {\tt NULL} y {\tt *ptask} queda {\tt NULL}.  Si {\tt
+max\_delay} es 0, la tarea no se bloquea (nReceive retorna de
+inmediato). Si {\tt max\_delay} es -1, la tarea espera indefinidamente
+la llegada de un mensaje.
+
+
+\item {\tt void nReply(nTask task, int rc)}\,: Responde un mensaje
+enviado por {\tt task} usando {\tt nSend}.  Desde ese instante, el
+receptor no puede accesar la informaci'on contenida en el mensaje que
+hab'ia sido enviado, ya que el emisor podr'ia destruirlo.  El valor
+{\tt rc} es el c'odigo de retorno para el emisor. nReply no se
+bloquea.
+
+\end{itemize}
+
+Entrada y Salida\,:\\
+
+Estas funciones son equivalentes a open, close, read y write en
+UNIX. Sus par'ametros son an'alogos a los de las de UNIX.
+Las ``nano'' funciones son no bloqueantes para el proceso UNIX,
+s'olo bloquean la tarea que las invoca. 
+
+\begin{itemize}
+
+\item {\tt int nOpen(char *path, int flags, int mode)}\,: Abre un archivo.
+
+\item {\tt int nClose(int fd) }\,: Cierra un archivo.
+
+\item {\tt int nRead(int fd, char *buf, int nbyte) }\,: Lee de un archivo.
+
+\item {\tt int nWrite(int fd, char *buf, int nbyte) }\,: Escribe en un archivo.
+
+\end{itemize}
+
+Servicios Miscel'aneos\,:
+
+\begin{itemize}
+
+\item {\tt nTask nCurrentTask(void) }\,:
+Entrega el identificador de la tarea que la invoca.
+
+\item {\tt int nGetTime(void) }\,:
+Entrega la ``hora'' en miliseg.
+
+\item
+{\tt void *nMalloc(int size)}\,:
+Es un {\tt malloc} ininterrumpible.
+
+\item
+{\tt void nFree(void *ptr)}\,:
+Es un {\tt free} ininterrumpible.
+
+
+\item
+{\tt void nFatalError(/* char *procname, char *format, ...*/ )}\,:
+Escribe salida formateada en la salida est'andar de errores y termina
+la ejecuci'on (del proceso Unix).  El formato y los par'ametros que
+recibe son an'alogos a los de {\tt printf}.
+
+\item
+{\tt void nPrintf(/* char *format, ... */)}\,:
+Es un {\tt printf} solo bloqueante para la tarea que lo invoca.
+
+\item
+{\tt void nFprintf(/* int fd, char *format, ... */)}\,: Es ``como'' un
+{\tt fprintf}, solo bloqueante para la tarea que lo invoca, pero
+recibe un fd, no un FILE *.
+
+\item
+{\tt void nSetNonBlocking()}\,: Coloca la E/S est'andar en modo no
+bloqueante.  De esta forma, al leer la entrada esta'ndar s'olo se
+bloquear'a la tarea lectora y no el resto de las tareas.
+
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,69 @@
+create table conductor(
+	id_conductor int not null unique,
+	nombre varchar(40),
+	telefono varchar(20),
+	salario int,
+	primary key(id_conductor));
+
+create table region(
+	id_region varchar(6) not null unique,
+	nombre varchar(30),
+	primary key(id_region));
+
+create table paquete(
+	codigo varchar(4) not null unique,
+	dir_origen varchar(20),
+	nombre_dest varchar(20),
+	dir_dest varchar(20),
+	id_conductor int not null,
+	id_region varchar(6) not null,
+	primary key (codigo),
+	foreign key (id_conductor) references conductor(id_conductor) on delete cascade,
+	foreign key (id_region) references region(id_region) on delete cascade);
+
+create table camion(
+	patente varchar(8) not null unique,
+	modelo varchar(20),
+	rendimiento int,
+	tipo varchar(20),
+	primary key(patente));
+
+create table conduce(
+	id_c int not null,
+	patente varchar(8) not null,
+	foreign key(id_c) references conductor(id_conductor) on delete cascade,
+	foreign key(patente) references camion(patente) on delete cascade);
+
+insert into region
+	values('VIII','Biobío'),
+	('VII','Maule'),
+	('RM','Metropolitana'),
+	('IX','Araucanía'),
+	('I','Tarapacá');
+ 
+ insert into conductor 
+ 	values(2,'José Pérez','995884923', 350000),
+ 	(3,'Manuel Ponce','987886789',600000),
+ 	(12,'Laura Jiménez','988787844',500000),
+ 	(76,'Paola Flores','995884098',450000);
+ 
+ insert into camion 
+ 	values('ww wy 39','Pegazo',20,'Grande'),
+ 	('xy zw 20','Kia Bongo',15,'Grande'),
+ 	('aa ew 12','Mazda T',	8,'Medio'),
+ 	('ff ff 20','Mazda T',8,'Pequeño'),
+ 	('sa pq 99','Volkswagen',10,'Grande');
+ 
+ insert into paquete 
+ 	values(1,'Chillán','Juan Palma','Concepción',2,'VIII'),
+ 	(4,'Chillán','Pedro Arias', 'Talca',3,'VII'),
+ 	(6,'Coihueco','Matías Ortega','Santiago',12,'RM'),
+ 	(8,'Pinto','Sofía Jara','Temuco',2,'IX'),
+ 	(3,'Pinto','Ana Arias','Santiago',3,'RM');
+ 
+ insert into conduce 
+ 	values (2,'ww wy 39'),
+ 	(2,'xy zw 20'),
+ 	(12,'aa ew 12'),
+ 	(76,'ff ff 20'),
+ 	(3,'ww wy 39');

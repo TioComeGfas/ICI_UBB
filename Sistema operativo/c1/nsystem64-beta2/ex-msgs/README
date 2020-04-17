@@ -1,0 +1,37 @@
+
+Ejemplos varios: test msgprodcons
+
+Para compilarlos haga make APP=<ejemplo>
+
+msgprodcons: Un ejemplo de productores/consumidores simultaneos.
+  El programa no termina nunca, pero no deberia caerse.  Se lanza con:
+
+  % msgprodcons
+  6 tareas ready, 6 cambios de contexto implicitos
+  4 tareas ready, 16 cambios de contexto implicitos
+  2 tareas ready, 29 cambios de contexto implicitos
+  4 tareas ready, 33 cambios de contexto implicitos
+  ...
+  ^C       <--- se detiene con control-C
+
+
+test: Chequeo de mensajes con timeouts.  Aqui lo que importa es
+  cuanto se demora en total el programa.
+
+  % time ./test 0 1 1 10 500
+  Lanza una dupla productor/consumidor secuencial.  La dupla debe
+  tomar poco mas de 5 segundos.
+
+  % time ./test 0 10 10 10 500
+  Como en el ejemplo anterior, pero lanza 10 duplas simultaneas.
+  Tambien debe tomar poco mas de 5 segundos.
+
+  % time ./test 0 10 5 10 500
+  Lanza primero 5 duplas y despues otras 5 duplas.  Toma poco mas de 10 seg.
+
+  % time ./test 0 10 1 10 500
+  Lanza las 10 duplas secuencialmente. Toma poco mas de 50 seg.
+
+  % time ./test 2 1000 25 100 0
+  Lanza 1000 duplas hasta 25 simultaneas en modo preemptive.
+  Toma tiempo, no se cae y termina.
